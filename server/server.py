@@ -8,7 +8,7 @@ from datetime import datetime
 app = Flask(__name__)
 CORS(app)
 
-BASE_DIR = os.getcwd()
+BASE_DIR = os.path.dirname(__file__)
 
 FILE_NAME = os.path.join(BASE_DIR, "istoric_productie.xlsx")
 FILE_STOC = os.path.join(BASE_DIR, "stoc_productie.xlsx")
