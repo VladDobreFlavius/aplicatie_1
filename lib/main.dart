@@ -37,6 +37,7 @@ class _MyAppState extends State<MyApp> {
       startPage = DepartmentsPage(
         username: prefs.getString('username') ?? '',
         isAdmin: prefs.getBool('isAdmin') ?? false,
+        departments: prefs.getStringList('departments') ?? [],
       );
     }
 

@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'login_page.dart';
 import 'productie_page.dart';
 import 'hr_page.dart';
+import 'administrativ_page.dart';
 
 class DepartmentsPage extends StatelessWidget {
   final bool isAdmin;
   final String username;
+  final List<String> departments;
 
   const DepartmentsPage({
     super.key,
     required this.isAdmin,
     required this.username,
+    required this.departments,
   });
 
   Widget departmentCard({
@@ -109,7 +112,7 @@ class DepartmentsPage extends StatelessWidget {
             title: 'Producție',
             description: 'Chestionare zilnice, utilaje, personal',
             icon: Icons.factory,
-            enabled: true,
+            enabled: isAdmin || departments.contains("Productie"),
             onTap: () {
               Navigator.push(
                 context,
@@ -164,16 +167,18 @@ class DepartmentsPage extends StatelessWidget {
           departmentCard(
             context: context,
             title: 'Administrativ',
-            description: 'Acces management și rapoarte',
+            description: 'Achiziții și stoc',
             icon: Icons.admin_panel_settings,
-            enabled: isAdmin,
-            onTap: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Administrativ – în lucru'),
-                ),
-              );
-            },
+            enabled: isAdmin || departments.contains("Administrativ"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const AdministrativPage(),
+                  ),
+                );
+              },
+
           ),
         ],
       ),

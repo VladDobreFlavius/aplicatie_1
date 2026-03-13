@@ -35,6 +35,7 @@ class _ChestionarProductiePageState
   final cantitateCtrl = TextEditingController();
   final altaUnitateCtrl = TextEditingController();
   final observatiiCtrl = TextEditingController();
+  final necesarMaineCtrl = TextEditingController();
 
   // ================= MATERIALE =================
   final materialCtrl = TextEditingController();
@@ -308,6 +309,7 @@ class _ChestionarProductiePageState
       'utilaje': utilaje,
       'personal': personal,
       'observatii': observatiiCtrl.text,
+      'necesarMaine': necesarMaineCtrl.text,
     };
   }
 
@@ -352,6 +354,8 @@ ${personalActiv.isEmpty
 
 📝 Observații:
 ${observatiiCtrl.text.isEmpty ? 'Nu sunt observații.' : observatiiCtrl.text}
+📦 Necesar pentru mâine:
+${necesarMaineCtrl.text.isEmpty ? 'Nu este specificat.' : necesarMaineCtrl.text}
 ''';
   }
 
@@ -553,7 +557,7 @@ ${observatiiCtrl.text.isEmpty ? 'Nu sunt observații.' : observatiiCtrl.text}
             ),
             DropdownButton<String>(
               value: materialUnitate,
-              items: ['Bucăți', 'Metri', 'Tone', 'Kg']
+              items: ['Bucăți', 'Metri','Metri patrati','Metri cubi', 'Tone', 'Kg']
                   .map((e) =>
                   DropdownMenuItem(value: e, child: Text(e)))
                   .toList(),
@@ -655,6 +659,20 @@ ${observatiiCtrl.text.isEmpty ? 'Nu sunt observații.' : observatiiCtrl.text}
               maxLines: 4,
               decoration: const InputDecoration(
                   border: OutlineInputBorder()),
+            ),
+          ),
+
+          section(
+            'Necesar pentru mâine',
+            Icons.inventory_2,
+            TextField(
+              controller: necesarMaineCtrl,
+              textCapitalization: TextCapitalization.sentences,
+              maxLines: 4,
+              decoration: const InputDecoration(
+                hintText: 'Ex: 20 m țeavă, 5 capace, ',
+                border: OutlineInputBorder(),
+              ),
             ),
           ),
 
